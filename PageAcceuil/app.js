@@ -14,7 +14,7 @@ let maxMoyenne = 0;
 let currentRow = null; // Pour stocker la ligne en cours de modification
 
 // STORAGE
-tableauBody.innerHTML = localStorage.getItem("table")
+// tableauBody.innerHTML = localStorage.getItem("table")
 
 // STOREGE 
 
@@ -46,7 +46,7 @@ function f() {
 
     tableauBody.appendChild(table);
 
-    localStorage.setItem("table" , tableauBody.innerHTML)
+    // localStorage.setItem("table" , tableauBody.innerHTML)
 
     totalEtudiants++;
     nbr_etudiant.textContent = totalEtudiants;
