@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+}
+th, td {
+    border: 3px solid black !important;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2 !important;
+}
+
+
+
+ /* Styles pour les champs de formulaire */
+input:invalid {
+      border-color: red;
+}
+input:valid {
+      border-color: green;
+}
+
+/* Ajoutez ceci dans votre styles.css si vous souhaitez styliser les boutons */
+.btn-actions {
+    cursor: pointer;
+}
+
+   

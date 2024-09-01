@@ -1,0 +1,11 @@
+
+body{
+    background-image: url(image/wave.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: 97.3vh !important;
+}

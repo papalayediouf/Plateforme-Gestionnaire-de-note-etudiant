@@ -1,0 +1,30 @@
+
+
+body{
+    background-image: url(/image/wave.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 97.3vh !important;
+}
+
+
+/* Styles pour les champs valides et invalides */
+.is-valid {
+    border-color: #28a745;
+}
+.is-invalid {
+    border-color: #dc3545;
+}
+.was-validated .form-control:valid {
+    border-color: #28a745;
+}
+.was-validated .form-control:invalid {
+    border-color: #dc3545;
+}
+.invalid-feedback {
+    display: none;
+}
+.form-control:invalid ~ .invalid-feedback {
+    display: block; 
+}
+
