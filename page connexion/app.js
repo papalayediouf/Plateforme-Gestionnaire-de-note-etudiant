@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Empêche la soumission du formulaire si ce n'est pas valide
         if (!loginForm.checkValidity()) {
             event.preventDefault(); // Empêche la soumission du formulaire
-            event.stopPropagation(); // Empêche la propagation de l'événement
+            event.stopPropagation(); 
             loginForm.classList.add('was-validated'); // Ajoute la classe pour les styles de validation
-            return; // Arrête le traitement si le formulaire n'est pas valide
+            return; 
         }
 
         // Formulaire valide; empêche la soumission par défaut pour faire la redirection

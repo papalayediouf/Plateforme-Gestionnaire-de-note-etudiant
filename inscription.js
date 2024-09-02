@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             event.stopPropagation();
             formulaire.classList.add('was-validated');
-            return; // Arrête le traitement si le formulaire n'est pas valide
+            return;
         }
 
         // Si le formulaire est valide, éviter l'action par défaut
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Effectuez ici des validations supplémentaires ou un traitement des données si nécessaire
         
         // Redirection vers une autre page
-        window.location.href = 'PageAcceuil/index.html'; // Assurez-vous que cette URL est correcte
+        window.location.href = 'PageAcceuil/index.html'; 
     }, false);
 
     // Validation en temps réel

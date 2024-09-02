@@ -11,7 +11,7 @@ let sommeNotes = 0;
 let Moyenne_plus_grand = document.querySelector(".Moyenne-plus-grand");
 let maxMoyenne = 0;
 
-let currentRow = null; // Pour stocker la ligne en cours de modification
+let tr = null; // Pour stocker la ligne en cours de modification
 
 // STORAGE
 // tableauBody.innerHTML = localStorage.getItem("table")
@@ -39,8 +39,8 @@ function f() {
         <td>${noteEtudiant}</td>
         <td>${moyenneEtudiant}</td>
         <td>
-            <button class="btn btn-warning btn-actions" onclick="editRow(this)">Modifier</button>
-            <button class="btn btn-danger btn-actions" onclick="deleteRow(this)">Supprimer</button>
+            <button class="btn btn-warning btn-actions" onclick="modification(this)">Modifier</button>
+            <button class="btn btn-danger btn-actions" onclick="supprimerLigne(this)">Supprimer</button>
         </td>
     `;
 
@@ -64,13 +64,10 @@ function f() {
     document.getElementById("note").value = "";
     document.getElementById("moyenne").value = "";
 
-    // Fermeture du modal
-    let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
-    modal.hide();
 }
 
 // Fonction pour supprimer une ligne
-function deleteRow(button) {
+function supprimerLigne(button) {
     let row = button.parentNode.parentNode;
     let note = parseFloat(row.cells[1].textContent);
 
@@ -82,14 +79,14 @@ function deleteRow(button) {
     sommes_des_notes.textContent = sommeNotes;
 
     if (parseFloat(row.cells[2].textContent) === maxMoyenne) {
-        updateMaxMoyenne();
+        moyenneMaximal();
     }
 
     row.remove();
 }
 
 // Fonction pour mettre à jour la moyenne maximale
-function updateMaxMoyenne() {
+function moyenneMaximal() {
     let rows = document.querySelectorAll("#tableauBody tr");
     maxMoyenne = 0;
     rows.forEach(row => {
@@ -102,20 +99,20 @@ function updateMaxMoyenne() {
 }
 
 // Fonction pour éditer une ligne
-function editRow(button) {
-    currentRow = button.parentNode.parentNode;
-    document.getElementById("nom").value = currentRow.cells[0].textContent;
-    document.getElementById("note").value = currentRow.cells[1].textContent;
-    document.getElementById("moyenne").value = currentRow.cells[2].textContent;
+function modification(button) {
+    tr = button.parentNode.parentNode;
+    document.getElementById("nom").value = tr.cells[0].textContent;
+    document.getElementById("note").value = tr.cells[1].textContent;
+    document.getElementById("moyenne").value = tr.cells[2].textContent;
 
     // Change le texte du bouton pour "Mettre à jour"
-    let updateButton = document.querySelector(".btn-primary");
-    updateButton.textContent = "Mettre à jour";
-    updateButton.setAttribute("onclick", "updateRow()");
+    let bouttonModificaton = document.querySelector(".btn-primary");
+    bouttonModificaton.textContent = "Mettre à jour";
+    bouttonModificaton.setAttribute("onclick", "mise_a_jour()");
 }
 
 // Fonction pour mettre à jour une ligne
-function updateRow() {
+function mise_a_jour() {
     let nomEtudiant = document.getElementById("nom").value;
     let noteEtudiant = parseFloat(document.getElementById("note").value);
     let moyenneEtudiant = parseFloat(document.getElementById("moyenne").value);
@@ -126,15 +123,15 @@ function updateRow() {
     }
 
     // Met à jour la ligne
-    currentRow.cells[0].textContent = nomEtudiant;
-    currentRow.cells[1].textContent = noteEtudiant;
-    currentRow.cells[2].textContent = moyenneEtudiant;
+    tr.cells[0].textContent = nomEtudiant;
+    tr.cells[1].textContent = noteEtudiant;
+    tr.cells[2].textContent = moyenneEtudiant;
 
     // Met à jour les statistiques
     sommeNotes = Array.from(document.querySelectorAll("#tableauBody tr")).reduce((acc, row) => acc + parseFloat(row.cells[1].textContent), 0);
     sommes_des_notes.textContent = sommeNotes;
 
-    updateMaxMoyenne();
+    moyenneMaximal();
 
     // Réinitialise le formulaire
     document.getElementById("nom").value = "";
@@ -146,18 +143,16 @@ function updateRow() {
     updateButton.textContent = "Ajouter etudiant";
     updateButton.setAttribute("onclick", "f()");
 
-    // Fermeture du modal
-    let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
-    modal.hide();
+   
 }
 
 // Fonction pour rechercher des étudiants
 document.querySelector('input[aria-label="Search"]').addEventListener('input', function() {
-    let searchQuery = this.value.toLowerCase();
+    let rechercheEtudiants = this.value.toLowerCase();
     let rows = document.querySelectorAll("#tableauBody tr");
     rows.forEach(row => {
         let nom = row.cells[0].textContent.toLowerCase();
-        if (nom.includes(searchQuery)) {
+        if (nom.includes(rechercheEtudiants)) {
             row.style.display = "";
         } else {
             row.style.display = "none";
